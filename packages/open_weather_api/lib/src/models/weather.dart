@@ -32,10 +32,9 @@ class Weather {
       daily: (json['daily'] as List)
           .map((item) => DailyWeather.fromJson(item))
           .toList(),
-      alerts: ((json['alerts']??[]) as List)
-              .map((item) => WeatherAlert.fromJson(item))
-              .toList() ??
-          [],
+      alerts: ((json['alerts'] ?? []) as List)
+          .map((item) => WeatherAlert.fromJson(item))
+          .toList(),
     );
   }
 }

@@ -16,7 +16,7 @@ class Weather {
   });
 }
 
-enum WeatherCondition{
+enum WeatherCondition {
   thunderstorm,
   drizzle,
   rain,
@@ -24,4 +24,8 @@ enum WeatherCondition{
   atmosphere,
   clear,
   clouds,
+}
+
+extension UnitConversion on double {
+  double get toCelsius => this - 273.15;
 }

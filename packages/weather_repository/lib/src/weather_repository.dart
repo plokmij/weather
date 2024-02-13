@@ -19,11 +19,11 @@ class WeatherRepository {
     );
     return Weather(
       city: city.name,
-      temperature: weather.current.temp,
+      temperature: weather.current.temp.toCelsius,
       humidity: weather.current.humidity.toDouble(),
       windSpeed: weather.current.windSpeed.toDouble(),
-      minTemperature: weather.daily.first.temp.min,
-      maxTemperature: weather.daily.first.temp.max,
+      minTemperature: weather.daily.first.temp.min.toCelsius,
+      maxTemperature: weather.daily.first.temp.max.toCelsius,
     );
   }
 }
