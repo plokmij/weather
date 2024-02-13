@@ -21,8 +21,8 @@ class OpenWeatherApiClient {
       _baseUrl,
       '/data/3.0/onecall',
       {
-        'lat': latitude,
-        'lon': longitude,
+        'lat': latitude.toString(),
+        'lon': longitude.toString(),
         'appid': apiKey,
       },
     );
@@ -30,14 +30,13 @@ class OpenWeatherApiClient {
     final response = await _httpClient.get(request);
 
     if (response.statusCode != 200) {
+      print(response.statusCode);
+      print(response.body);
       throw Exception('Unable to fetch weather');
     }
 
-    final json = jsonDecode(response.body) as Map;
+    final json = jsonDecode(response.body) as Map<String,dynamic>;
 
-    return Weather(
-      city: '',
-      temperature: json['current']['temp'],
-    );
+    return Weather.fromJson(json);
   }
 }

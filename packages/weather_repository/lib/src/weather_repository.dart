@@ -2,26 +2,28 @@ import 'package:open_weather_api/open_weather_api.dart' hide Weather;
 import 'package:weather_repository/weather_repository.dart';
 
 class WeatherRepository {
-  WeatherRepository(
-      {OpenWeatherApiClient? weatherApiClient, required this.apiKey,})
-      : _weatherApiClient = weatherApiClient ?? OpenWeatherApiClient();
+  WeatherRepository({
+    OpenWeatherApiClient? weatherApiClient,
+    required String apiKey,
+  })  : _weatherApiClient = weatherApiClient ?? OpenWeatherApiClient(),
+        _apiKey = apiKey;
 
   final OpenWeatherApiClient _weatherApiClient;
-  final String apiKey;
+  final String _apiKey;
 
-  Future<Weather> fetchWeather(City city, String apiKey) async {
+  Future<Weather> fetchWeather(City city) async {
     final weather = await _weatherApiClient.getWeather(
       latitude: city.latitude,
       longitude: city.longitude,
-      apiKey: apiKey,
+      apiKey: _apiKey,
     );
     return Weather(
       city: city.name,
-      temperature: weather.temperature,
-      humidity: 0.0,
-      windSpeed: 0.0,
-      minTemperature: 0.0,
-      maxTemperature: 0.0,
+      temperature: weather.current.temp,
+      humidity: weather.current.humidity.toDouble(),
+      windSpeed: weather.current.windSpeed.toDouble(),
+      minTemperature: weather.daily.first.temp.min,
+      maxTemperature: weather.daily.first.temp.max,
     );
   }
 }

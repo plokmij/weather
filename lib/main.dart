@@ -7,7 +7,7 @@ void main() async {
   await dotenv.load(fileName: "assets/.env");
   runApp(
     WeatherApp(
-      weatherRepository: WeatherRepository(apiKey: dotenv.env['APIKEY'] ?? ''),
+      weatherRepository: WeatherRepository(apiKey: dotenv.env['API_KEY'] ?? ''),
     ),
   );
 }
