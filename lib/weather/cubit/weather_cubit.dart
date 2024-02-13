@@ -24,7 +24,10 @@ class WeatherCubit extends Cubit<WeatherState> {
           weatherStatus: WeatherStatus.success,
         ),
       );
-    } catch (e) {
+    } catch (e, st) {
+      print(e);
+      ;
+      print(st);
       emit(
         state.copyWith(
           weatherStatus: WeatherStatus.failure,

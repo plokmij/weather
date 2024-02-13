@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather/location/view/location_selection_page.dart';
 import 'package:weather_repository/weather_repository.dart';
 
 class WeatherApp extends StatelessWidget {
@@ -27,38 +28,12 @@ class WeatherAppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(),
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     title: const Text('Hello World'),
-      //   ),
-      //   body: FutureBuilder(
-      //     future: weatherRepository.fetchWeather(
-      //       City(
-      //         name: 'Wandoor',
-      //         latitude: 11.1897372,
-      //         longitude: 76.2343544,
-      //       ),
-      //     ),
-      //     builder: (context, snapshot) {
-      //       if (snapshot.hasData) {
-      //         final weather = snapshot.data!;
-      //         return Column(
-      //           children: [
-      //             Text(weather.city),
-      //             Text(weather.temperature.toStringAsFixed(2)),
-      //             Text(weather.minTemperature.toStringAsFixed(2)),
-      //             Text(weather.maxTemperature.toStringAsFixed(2)),
-      //             Text(weather.humidity.toStringAsFixed(2)),
-      //             Text(weather.windSpeed.toStringAsFixed(2)),
-      //           ],
-      //         );
-      //       } else {
-      //         return const Text('Hola Mundo');
-      //       }
-      //     },
-      //   ),
-      // ),
+      theme: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+        ),
+      ),
+      home: const LocationSelectionView(),
     );
   }
 }

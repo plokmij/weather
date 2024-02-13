@@ -79,7 +79,7 @@ class CurrentWeather {
       dt: json['dt'],
       sunrise: json['sunrise'],
       sunset: json['sunset'],
-      temp: json['temp'],
+      temp: toDouble(json['temp'] ?? 0),
       feelsLike: json['feels_like'],
       pressure: json['pressure'],
       humidity: json['humidity'],
@@ -87,9 +87,9 @@ class CurrentWeather {
       uvi: toDouble(json['uvi']),
       clouds: json['clouds'],
       visibility: json['visibility'],
-      windSpeed: json['wind_speed'],
+      windSpeed: toDouble(json['wind_speed'] ?? 0),
       windDeg: json['wind_deg'],
-      windGust: json['wind_gust'],
+      windGust: toDouble(json['wind_gust'] ?? 0),
       weather: (json['weather'] as List)
           .map((item) => WeatherDescription.fromJson(item))
           .toList(),
@@ -134,17 +134,17 @@ class HourlyWeather {
     return HourlyWeather(
       dt: json['dt'],
       temp: toDouble(json['temp']),
-      feelsLike: json['feels_like'],
+      feelsLike: toDouble(json['feels_like']),
       pressure: json['pressure'],
       humidity: json['humidity'],
-      dewPoint: json['dew_point'],
+      dewPoint: toDouble(json['dew_point']),
       uvi: toDouble(json['uvi']),
       clouds: json['clouds'],
       visibility: json['visibility'],
       windSpeed: toDouble(json['wind_speed']),
       windDeg: json['wind_deg'],
-      windGust: json['wind_gust'],
-      pop: (json['pop'] as int).toDouble(),
+      windGust: toDouble(json['wind_gust']),
+      pop: toDouble(json['pop']),
       weather: (json['weather'] as List)
           .map((item) => WeatherDescription.fromJson(item))
           .toList(),
@@ -211,9 +211,9 @@ class DailyWeather {
       pressure: json['pressure'],
       humidity: json['humidity'],
       dewPoint: json['dew_point'],
-      windSpeed: json['wind_speed'],
+      windSpeed: toDouble(json['wind_speed']),
       windDeg: json['wind_deg'],
-      windGust: json['wind_gust'],
+      windGust: toDouble(json['wind_gust']),
       weather: (json['weather'] as List)
           .map((item) => WeatherDescription.fromJson(item))
           .toList(),
@@ -245,11 +245,11 @@ class WeatherTemperature {
   factory WeatherTemperature.fromJson(Map<String, dynamic> json) {
     return WeatherTemperature(
       day: json['day'],
-      min: toDouble(json['min'] ?? 0),
-      max: toDouble(json['max'] ?? 0),
-      night: json['night'],
-      eve: json['eve'],
-      morn: toDouble(json['morn'] ?? 0),
+      min: toDouble(json['min']),
+      max: toDouble(json['max']),
+      night: toDouble(json['night']),
+      eve: toDouble(json['eve']),
+      morn: toDouble(json['morn']),
     );
   }
 }
@@ -303,6 +303,6 @@ class WeatherAlert {
   }
 }
 
-double toDouble(num input) {
-  return input.toDouble();
+double toDouble(num? input) {
+  return input == null ? 0.0 : input.toDouble();
 }

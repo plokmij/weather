@@ -3,7 +3,7 @@ class City {
   final double latitude;
   final double longitude;
 
-  City({
+  const City({
     required this.name,
     required this.latitude,
     required this.longitude,
