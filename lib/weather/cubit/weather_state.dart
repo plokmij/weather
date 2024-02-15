@@ -41,6 +41,12 @@ class WeatherState {
         windSpeed: 0.0,
         minTemperature: 0.0,
         maxTemperature: 0.0,
+        weatherDescription: WeatherDescription(
+          id: 0,
+          main: '',
+          description: '',
+          icon: '',
+        ),
       ),
       weatherStatus: WeatherStatus.initial,
     );

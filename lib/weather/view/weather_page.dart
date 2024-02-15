@@ -32,6 +32,9 @@ class WeatherView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(city.name),
+      ),
       body: BlocBuilder<WeatherCubit, WeatherState>(
         builder: (context, state) {
           switch (state.weatherStatus) {
@@ -40,8 +43,21 @@ class WeatherView extends StatelessWidget {
             case WeatherStatus.loading:
               return const WeatherLoading();
             case WeatherStatus.success:
-              return const ColoredBox(
-                color: Colors.black,
+              return Column(
+                children: [
+                  Text(
+                    '${state.weather.temperature.toStringAsFixed(0)}°',
+                    style: const TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(state.weather.weatherDescription.main),
+                  Text('${state.weather.minTemperature.toStringAsFixed(0)}°'),
+                  Text('${state.weather.maxTemperature.toStringAsFixed(0)}°'),
+                  Text('${state.weather.humidity.toStringAsFixed(0)}%'),
+                  Text('${state.weather.windSpeed.toStringAsFixed(0)}km/h'),
+                ],
               );
             case WeatherStatus.failure:
               return WeatherFailure(

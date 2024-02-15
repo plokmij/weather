@@ -24,6 +24,7 @@ class WeatherRepository {
       windSpeed: weather.current.windSpeed.toDouble(),
       minTemperature: weather.daily.first.temp.min.toCelsius,
       maxTemperature: weather.daily.first.temp.max.toCelsius,
+      weatherDescription: weather.current.weather.first,
     );
   }
 }

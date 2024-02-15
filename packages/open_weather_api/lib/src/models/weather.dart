@@ -244,7 +244,7 @@ class WeatherTemperature {
 
   factory WeatherTemperature.fromJson(Map<String, dynamic> json) {
     return WeatherTemperature(
-      day: json['day'],
+      day: toDouble(json['day']),
       min: toDouble(json['min']),
       max: toDouble(json['max']),
       night: toDouble(json['night']),
