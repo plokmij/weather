@@ -63,11 +63,30 @@ class LocationSelectionPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Select Location'),
+        appBar: MediaQuery.of(context).orientation == Orientation.landscape
+            ? null
+            : AppBar(
+                centerTitle: true,
+                title: const Text('Select Location'),
+              ),
+        body: Row(
+          children: [
+            if (MediaQuery.of(context).orientation == Orientation.landscape)
+              Expanded(
+                flex: 1,
+                child: Image.asset(
+                  'assets/bg.webp',
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+              ),
+            Expanded(
+              flex: 1,
+              child: LocationList(locations: cities),
+            ),
+          ],
         ),
-        body: LocationList(locations: cities),
       ),
     );
   }
